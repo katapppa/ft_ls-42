@@ -6,7 +6,7 @@
 /*   By: cgamora <cgamora@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/11 06:32:31 by cgamora           #+#    #+#             */
-/*   Updated: 2020/11/11 07:13:24 by cgamora          ###   ########.fr       */
+/*   Updated: 2020/11/12 15:03:07 by cgamora          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,4 +67,44 @@ int			get_termcolom(void)
 
 	ioctl(STDOUT_FILENO, TIOCGWINSZ, &size);
 	return (size.ws_col);
+}
+
+static void	rev_av(int ac, char ***av, int begin)
+{
+	char	*tmp;
+
+	while (begin < ac - 1)
+	{
+		tmp = (*av)[ac - 1];
+		(*av)[ac - 1] = (*av)[begin];
+		(*av)[begin] = tmp;
+		ac--;
+		begin++;
+	}
+}
+
+void		sort_av(int ac, char ***av, int begin, t_flags *flags)
+{
+	int		end;
+	int		i;
+	char	*tmp;
+
+	end = ac - 1;
+	while (end > begin)
+	{
+		i = begin;
+		while (i < end)
+		{
+			if (ft_strcmp((*av)[i], (*av)[i + 1]) > 0)
+			{
+				tmp = (*av)[i];
+				(*av)[i] = (*av)[i + 1];
+				(*av)[i + 1] = tmp;
+			}
+			i++;
+		}
+		end--;
+	}
+	if (flags->r)
+		rev_av(ac, av, begin);
 }

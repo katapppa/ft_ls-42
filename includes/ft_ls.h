@@ -6,7 +6,7 @@
 /*   By: cgamora <cgamora@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/09 13:45:55 by cgamora           #+#    #+#             */
-/*   Updated: 2020/11/11 10:48:51 by cgamora          ###   ########.fr       */
+/*   Updated: 2020/11/12 15:16:05 by cgamora          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ typedef struct		s_flagl
 //global
 
 int             g_parser;
+int             g_amount;
 
 //parse
 
@@ -87,5 +88,11 @@ int				get_termcolom(void);
 int				print_all(t_info *info_list, t_flagl infrml, t_flags *flag);
 void			print_list(t_info *info_list, t_flagl informl, t_flags *flag);
 void			print_permissions(t_info *info_list);
+int				add_direct(t_info *info_list, char *fd_name, t_dirent *direct);
+void			print_dir(int argc, char **argv, t_flags *flag);
+int				print_file(int argc, char **argv, t_flags *flag);
+void			sort_av(int ac, char ***av, int begin, t_flags *flags);
+int				ft_isdir(char *fd_name);
+char			*control_path(char *fd_name, char *dir_name);
 
 #endif
